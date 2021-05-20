@@ -1,0 +1,98 @@
+{
+    "nodes": {
+        "env_init": {
+            "row": 0,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    5,
+                    0
+                ]
+            }
+        },
+        "workflow_func_1": {
+            "row": 1,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    6,
+                    4
+                ],
+                "locEnd": [
+                    7,
+                    4
+                ]
+            }
+        },
+        "choice": {
+            "row": 2,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    7,
+                    4
+                ]
+            }
+        },
+        "sort": {
+            "row": 3,
+            "column": 1,
+            "srcmap": {
+                "loc": [
+                    8,
+                    17
+                ]
+            }
+        },
+        "workflow_func_2": {
+            "row": 3,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    10,
+                    8
+                ],
+                "locEnd": [
+                    10,
+                    8
+                ]
+            }
+        },
+        "exit_pass": {
+            "row": 4,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    11,
+                    4
+                ]
+            }
+        }
+    },
+    "edges": [
+        {
+            "from": "env_init",
+            "to": "workflow_func_1"
+        },
+        {
+            "from": "workflow_func_1",
+            "to": "choice"
+        },
+        {
+            "from": "choice",
+            "to": "sort"
+        },
+        {
+            "from": "choice",
+            "to": "workflow_func_2"
+        },
+        {
+            "from": "sort",
+            "to": "exit_pass"
+        },
+        {
+            "from": "workflow_func_2",
+            "to": "exit_pass"
+        }
+    ]
+}

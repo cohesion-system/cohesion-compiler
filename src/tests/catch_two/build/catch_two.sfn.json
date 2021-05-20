@@ -1,0 +1,62 @@
+{
+    "StartAt": "env_init",
+    "States": {
+        "env_init": {
+            "Type": "Pass",
+            "InputPath": "$",
+            "Parameters": {
+                "env": {}
+            },
+            "Next": "hello"
+        },
+        "hello": {
+            "Type": "Task",
+            "Next": "exit_pass",
+            "Resource": "arn:aws:states:us-east-1:set_account_id_in_config:activity:hello",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.result",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "LockError"
+                    ],
+                    "Next": "handle_error"
+                },
+                {
+                    "ErrorEquals": [
+                        "DummyError"
+                    ],
+                    "Next": "handle_error"
+                },
+                {
+                    "ErrorEquals": [
+                        "DBError"
+                    ],
+                    "Next": "handle_db_error"
+                }
+            ]
+        },
+        "handle_error": {
+            "Type": "Task",
+            "Next": "exit_pass",
+            "Resource": "arn:aws:states:us-east-1:set_account_id_in_config:activity:handle-error",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.error"
+        },
+        "handle_db_error": {
+            "Type": "Task",
+            "Next": "exit_pass",
+            "Resource": "arn:aws:states:us-east-1:set_account_id_in_config:activity:handle-db-error",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.db_error"
+        },
+        "exit_pass": {
+            "Type": "Pass",
+            "InputPath": "$.env.result",
+            "End": true
+        }
+    }
+}

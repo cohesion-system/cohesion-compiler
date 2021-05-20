@@ -1,0 +1,44 @@
+{
+    "StartAt": "env_init",
+    "States": {
+        "env_init": {
+            "Type": "Pass",
+            "InputPath": "$",
+            "Parameters": {
+                "env": {
+                    "myParam.$": "$.myParam"
+                }
+            },
+            "Next": "go_func_1"
+        },
+        "go_func_1": {
+            "Type": "Task",
+            "Next": "double",
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:go-func-1",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$"
+        },
+        "double": {
+            "Type": "Task",
+            "Next": "go_func_2",
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:double",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.call_1"
+        },
+        "go_func_2": {
+            "Type": "Task",
+            "Next": "exit_pass",
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:go-func-2",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$"
+        },
+        "exit_pass": {
+            "Type": "Pass",
+            "InputPath": "$.env.ret_1",
+            "End": true
+        }
+    }
+}

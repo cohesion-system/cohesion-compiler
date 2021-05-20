@@ -1,0 +1,44 @@
+{
+    "nodes": {
+        "env_init": {
+            "row": 0,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    2,
+                    0
+                ]
+            }
+        },
+        "foo": {
+            "row": 1,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    3,
+                    11
+                ]
+            }
+        },
+        "exit_pass": {
+            "row": 2,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    3,
+                    4
+                ]
+            }
+        }
+    },
+    "edges": [
+        {
+            "from": "env_init",
+            "to": "foo"
+        },
+        {
+            "from": "foo",
+            "to": "exit_pass"
+        }
+    ]
+}

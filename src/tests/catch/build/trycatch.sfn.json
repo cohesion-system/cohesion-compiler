@@ -1,0 +1,45 @@
+{
+    "StartAt": "env_init",
+    "States": {
+        "env_init": {
+            "Type": "Pass",
+            "InputPath": "$",
+            "Parameters": {
+                "env": {}
+            },
+            "Next": "foo"
+        },
+        "foo": {
+            "Type": "Task",
+            "Next": "x",
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:foo",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.discard",
+            "Catch": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "Next": "bar"
+                }
+            ]
+        },
+        "bar": {
+            "Type": "Task",
+            "Next": "x",
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:bar",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.discard"
+        },
+        "x": {
+            "Type": "Task",
+            "End": true,
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:x",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.discard"
+        }
+    }
+}

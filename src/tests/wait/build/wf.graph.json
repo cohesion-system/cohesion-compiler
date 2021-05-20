@@ -1,0 +1,44 @@
+{
+    "nodes": {
+        "env_init": {
+            "row": 0,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    1,
+                    0
+                ]
+            }
+        },
+        "howManySeconds": {
+            "row": 1,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    2,
+                    8
+                ]
+            }
+        },
+        "sleep": {
+            "row": 2,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    3,
+                    4
+                ]
+            }
+        }
+    },
+    "edges": [
+        {
+            "from": "env_init",
+            "to": "howManySeconds"
+        },
+        {
+            "from": "howManySeconds",
+            "to": "sleep"
+        }
+    ]
+}

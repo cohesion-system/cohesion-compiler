@@ -1,0 +1,63 @@
+{
+    "nodes": {
+        "env_init": {
+            "row": 0,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    1,
+                    0
+                ]
+            }
+        },
+        "foo": {
+            "row": 1,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    3,
+                    8
+                ]
+            }
+        },
+        "bar": {
+            "row": 2,
+            "column": 1,
+            "srcmap": {
+                "loc": [
+                    5,
+                    8
+                ]
+            }
+        },
+        "x": {
+            "row": 3,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    6,
+                    4
+                ]
+            }
+        }
+    },
+    "edges": [
+        {
+            "from": "env_init",
+            "to": "foo"
+        },
+        {
+            "from": "foo",
+            "to": "x"
+        },
+        {
+            "from": "foo",
+            "to": "bar",
+            "type": "catch"
+        },
+        {
+            "from": "bar",
+            "to": "x"
+        }
+    ]
+}

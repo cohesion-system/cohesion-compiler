@@ -1,0 +1,34 @@
+
+
+# There are probably chains that don't need to be fully broken up.
+# e.g.
+
+
+#     if e1:
+#         green1()
+#     elif e2:
+#         blue1()
+#     elif e3:
+#         blue2()
+#     elif e4:
+#         green2()
+#     else:
+#         blue3()
+#     
+# In this case we can transform to:
+
+#     if e1:
+#         green1()
+#     elif e4:
+#         green2()
+#     else:
+#         if e2:
+#             blue1()
+#         elif e3:
+#             blue2()
+#         else:
+#             blue3()
+
+# Then we have fewer state transitions and fewer lambda calls.  We can
+# implement this optimization later, though.  For now, we simply lift
+# every green if statement into the CAST.

@@ -1,0 +1,34 @@
+{
+    "StartAt": "env_init",
+    "States": {
+        "env_init": {
+            "Type": "Pass",
+            "InputPath": "$",
+            "Parameters": {
+                "env": {}
+            },
+            "Next": "getData"
+        },
+        "getData": {
+            "Type": "Task",
+            "Next": "sortNumbers",
+            "Resource": "arn:aws:states:us-east-1:set_account_id_in_config:activity:getData",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.data"
+        },
+        "sortNumbers": {
+            "Type": "Task",
+            "Next": "exit_pass",
+            "Resource": "arn:aws:states:us-east-1:set_account_id_in_config:activity:sortNumbers",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.sortedData"
+        },
+        "exit_pass": {
+            "Type": "Pass",
+            "InputPath": "$.env.sortedData",
+            "End": true
+        }
+    }
+}

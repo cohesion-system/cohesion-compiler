@@ -1,0 +1,26 @@
+{
+    "StartAt": "env_init",
+    "States": {
+        "env_init": {
+            "Type": "Pass",
+            "InputPath": "$",
+            "Parameters": {
+                "env": {}
+            },
+            "Next": "howManySeconds"
+        },
+        "howManySeconds": {
+            "Type": "Task",
+            "Next": "sleep",
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:howManySeconds",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.n"
+        },
+        "sleep": {
+            "Type": "Wait",
+            "End": true,
+            "SecondsPath": "$.env.n"
+        }
+    }
+}

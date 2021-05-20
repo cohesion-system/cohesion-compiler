@@ -1,0 +1,80 @@
+{
+    "nodes": {
+        "env_init": {
+            "row": 0,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    2,
+                    0
+                ]
+            }
+        },
+        "go_func_1": {
+            "row": 1,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    3,
+                    4
+                ],
+                "locEnd": [
+                    3,
+                    4
+                ]
+            }
+        },
+        "double": {
+            "row": 2,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    4,
+                    12
+                ]
+            }
+        },
+        "go_func_2": {
+            "row": 3,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    4,
+                    4
+                ],
+                "locEnd": [
+                    5,
+                    4
+                ]
+            }
+        },
+        "exit_pass": {
+            "row": 4,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    5,
+                    4
+                ]
+            }
+        }
+    },
+    "edges": [
+        {
+            "from": "env_init",
+            "to": "go_func_1"
+        },
+        {
+            "from": "go_func_1",
+            "to": "double"
+        },
+        {
+            "from": "double",
+            "to": "go_func_2"
+        },
+        {
+            "from": "go_func_2",
+            "to": "exit_pass"
+        }
+    ]
+}

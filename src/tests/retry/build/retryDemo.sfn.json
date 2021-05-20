@@ -1,0 +1,36 @@
+{
+    "StartAt": "env_init",
+    "States": {
+        "env_init": {
+            "Type": "Pass",
+            "InputPath": "$",
+            "Parameters": {
+                "env": {}
+            },
+            "Next": "foo"
+        },
+        "foo": {
+            "Type": "Task",
+            "Next": "exit_pass",
+            "Resource": "arn:aws:lambda:us-east-1:set_account_id_in_config:function:foo",
+            "InputPath": "$",
+            "OutputPath": "$",
+            "ResultPath": "$.env.call_1",
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "IntervalSeconds": 1,
+                    "MaxAttempts": 3,
+                    "BackoffRate": 2
+                }
+            ]
+        },
+        "exit_pass": {
+            "Type": "Pass",
+            "InputPath": "$.env.call_1",
+            "End": true
+        }
+    }
+}

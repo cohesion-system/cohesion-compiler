@@ -1,0 +1,87 @@
+{
+    "nodes": {
+        "env_init": {
+            "row": 0,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    1,
+                    0
+                ]
+            }
+        },
+        "hello": {
+            "row": 1,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    3,
+                    15
+                ]
+            }
+        },
+        "handle_error": {
+            "row": 2,
+            "column": 1,
+            "srcmap": {
+                "loc": [
+                    5,
+                    14
+                ]
+            }
+        },
+        "handle_db_error": {
+            "row": 3,
+            "column": 1,
+            "srcmap": {
+                "loc": [
+                    7,
+                    17
+                ]
+            }
+        },
+        "exit_pass": {
+            "row": 4,
+            "column": 0,
+            "srcmap": {
+                "loc": [
+                    8,
+                    4
+                ]
+            }
+        }
+    },
+    "edges": [
+        {
+            "from": "env_init",
+            "to": "hello"
+        },
+        {
+            "from": "hello",
+            "to": "exit_pass"
+        },
+        {
+            "from": "hello",
+            "to": "handle_error",
+            "type": "catch"
+        },
+        {
+            "from": "hello",
+            "to": "handle_error",
+            "type": "catch"
+        },
+        {
+            "from": "hello",
+            "to": "handle_db_error",
+            "type": "catch"
+        },
+        {
+            "from": "handle_error",
+            "to": "exit_pass"
+        },
+        {
+            "from": "handle_db_error",
+            "to": "exit_pass"
+        }
+    ]
+}
